@@ -32,7 +32,6 @@ def test():
     return "<p>Hello, World!</p>"
 
 # upload file to flask
-@CORS(app)
 @app.route('/api/upload', methods=['POST'])
 def upload():
     global df  # Access the global variable
@@ -46,7 +45,6 @@ def upload():
     return jsonify({'message': 'File uploaded and processed successfully'})
 
 # Generate questions
-@CORS(app)
 @app.route('/api/generate-text', methods=['POST'])
 def generate_text():
     print("Generating text")
@@ -65,7 +63,6 @@ def generate_text():
     return response["choices"][0]["text"]
 
 # generate python code
-@CORS(app)
 @app.route('/api/generate-code', methods=['POST'])
 def generate_code():
     print("Generating code")
