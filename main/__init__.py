@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import azure.functions as func
 import openai
 import os
 import pandas as pd
 
 app = Flask(__name__)
+# Enable CORS
+CORS(app)
 
 # OpenAI API configuration
 openai.api_type = os.getenv("OPENAI_API_TYPE")

@@ -4,5 +4,6 @@
 
 azure-functions
 flask
+flask-cors
 openai
 pandas
