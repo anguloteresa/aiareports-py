@@ -63,7 +63,7 @@ def generate_text():
     return response["choices"][0]["text"]
 
 # generate python code
-@app.route('/api/generate-code', methods=['POST'])
+@app.route('/generate-code', methods=['POST'])
 def generate_code():
     print("Generating code")
     input_text = request.json.get('input')
@@ -71,7 +71,7 @@ def generate_code():
         engine="test-deployment-davinci",
         prompt=str(input_text),
         temperature=0.80,
-        max_tokens=1000,
+        max_tokens=50,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
@@ -79,7 +79,8 @@ def generate_code():
     )
     code = response["choices"][0]["text"]
     print(code)
-    execute_code(code)
+    ans = execute_code(code)
+    print(ans)
     print(answers)
     return answers
 
@@ -88,6 +89,9 @@ def execute_code(code):
     global df
     global answers
     global res
+    df = None
+    answers = []
+    res = ""
     i = 1
     
     lines = code.strip().split('%')
