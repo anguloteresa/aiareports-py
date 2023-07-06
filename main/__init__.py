@@ -3,6 +3,7 @@ from flask_cors import CORS
 import azure.functions as func
 import openai
 import os
+import numpy as np
 import pandas as pd
 
 app = Flask(__name__)
@@ -89,22 +90,20 @@ def execute_code(code):
     global df
     global answers
     global res
-    df = None
+    
     answers = []
     res = ""
     i = 1
     
-    lines = code.strip().split('%')
-    
-    print(lines)
+    lines = code.strip().split('\n')
     print(len(lines))
+    
     if df is not None:
         try:
-            for line in lines:
+            for i in range(0, len(lines), 1):
                 print(i)
                 i = i+1
-                print(line)
-                exec("global res;" + line)
+                exec("global res;" + lines[i])
                 if len(res) > 1:
                     result_dict = res.to_dict()
                     answers.append(result_dict)
