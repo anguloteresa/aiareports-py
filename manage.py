@@ -3,10 +3,20 @@ import openai
 from flask import Flask
 from extensions import db
 from routes import api, userbp, reportbp, questionbp
+from config import DevelopmentConfig, ProductionConfig, TestingConfig
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object('config.DevelopmentConfig')
+    
+    environment = os.environ.get('FLASK_ENV')
+
+    if environment == 'development':
+        app.config.from_object(DevelopmentConfig)
+    elif environment == 'production':
+        app.config.from_object(ProductionConfig)
+    else:
+        app.config.from_object(TestingConfig)
+    
     db.init_app(app)
     
     # Register your routes and blueprints here
