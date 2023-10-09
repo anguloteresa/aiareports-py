@@ -23,7 +23,7 @@ QuestionModel = {
 }
 
 # Create dataframe for the pandas code execution
-df = pd.read_csv('/Users/tere/Perficient/newapiwow/uploads/file.csv')
+df
 answers = []
 res = ""
 figure = Figure()
