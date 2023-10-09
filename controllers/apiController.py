@@ -23,7 +23,7 @@ QuestionModel = {
 }
 
 # Create dataframe for the pandas code execution
-df
+df = None
 answers = []
 res = ""
 figure = Figure()
