@@ -11,10 +11,13 @@ def create_app():
     environment = os.environ.get('FLASK_ENV')
 
     if environment == 'development':
+        print("Using Development configuration")
         app.config.from_object(DevelopmentConfig)
     elif environment == 'production':
+        print("Using Production configuration")
         app.config.from_object(ProductionConfig)
     else:
+        print("Using Testing configuration")
         app.config.from_object(TestingConfig)
     
     db.init_app(app)
