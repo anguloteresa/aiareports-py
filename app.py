@@ -11,7 +11,7 @@ if os.path.exists(dotenv_path):
     load_dotenv(dotenv_path)
 
 app = create_app()
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 if __name__ == '__main__':
     with app.app_context():
