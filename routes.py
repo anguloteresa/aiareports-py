@@ -1,5 +1,5 @@
 from flask import Blueprint
-from controllers.apiController import generateGraph, index, loadApi, uploadFile, generateText, generateQuestions, generateCode
+from controllers.apiController import loadApi, uploadFile, generateQuestions, generateReport, generateCode
 from controllers.userController import userLogin, getUsers, getUser, getUserQuestions, getUserByEmail, createUser, editUser, deleteUser
 from controllers.reportController import getReportGroup, getUserReport, createReport, deleteReport, getReportsAll, editReport
 from controllers.questionController import createQuestionGroup, createQuestion, getQuestionGroups, getQuestionsInGroup, deleteQuestion, deleteQuestionGroup, editQuestionGroup, editQuestion, createTest
@@ -11,13 +11,13 @@ reportbp = Blueprint('report', __name__)
 questionbp = Blueprint('question_group', __name__)
 
 # Main Api (login, auth, openai)
-api.route('/')(index)
+api.route('/')(loadApi)
 api.route('/login', methods=['GET', 'POST'])(userLogin)
 api.route('/upload', methods=['GET', 'POST'])(uploadFile)
-api.route('/generate-text', methods=['POST'])(generateText)
+api.route('/generate-text', methods=['POST'])(generateReport)
 api.route('/generate-questions', methods=['POST'])(generateQuestions)
 api.route('/generate-answers', methods=['POST'])(generateCode)
-api.route('/generate-graph', methods = ["POST"])(generateGraph)
+# api.route('/generate-graph', methods = ["POST"])(generateGraph)
 
 # User
 userbp.route('/', methods=['GET'])(getUsers)
